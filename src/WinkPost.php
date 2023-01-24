@@ -6,7 +6,6 @@ use Carbon\CarbonInterface;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\HtmlString;
-use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 /**
  * @property string $id
@@ -115,11 +114,7 @@ class WinkPost extends AbstractWinkModel
             return $this->body;
         }
 
-        $converter = new GithubFlavoredMarkdownConverter([
-            'allow_unsafe_links' => false,
-        ]);
-
-        return new HtmlString($converter->convertToHtml($this->body));
+        return Wink::getMarkdownParser()($this->body);
     }
 
     /**
