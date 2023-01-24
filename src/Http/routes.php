@@ -1,7 +1,6 @@
 <?php
 
 use Wink\Http\Controllers\ImageUploadsController;
-use Wink\Http\Controllers\LoginController;
 use Wink\Http\Controllers\PagesController;
 use Wink\Http\Controllers\PostsController;
 use Wink\Http\Controllers\SPAViewController;
@@ -34,9 +33,6 @@ Route::get('/api/pages', [PagesController::class, 'index'])->name('pages.index')
 Route::get('/api/pages/{id?}', [PagesController::class, 'show'])->name('pages.show');
 Route::post('/api/pages/{id}', [PagesController::class, 'store'])->name('pages.store');
 Route::delete('/api/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
-
-// Logout Route...
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Catch-all Route...
 Route::get('/{view?}', SPAViewController::class)->name('spa')->where('view', '(.*)');
