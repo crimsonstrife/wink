@@ -3,6 +3,7 @@
 namespace Wink;
 
 use Carbon\CarbonInterface;
+use Wink\Traits\HasSlug;
 
 /**
  * @property string $id
@@ -14,8 +15,11 @@ use Carbon\CarbonInterface;
  * @property CarbonInterface $created_at
  * @property array<mixed>|null $meta
  */
+
 class WinkPage extends AbstractWinkModel
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *

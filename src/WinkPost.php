@@ -6,6 +6,8 @@ use Carbon\CarbonInterface;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\HtmlString;
+use League\CommonMark\GithubFlavoredMarkdownConverter;
+use Wink\Traits\HasSlug;
 
 /**
  * @property string $id
@@ -28,6 +30,8 @@ use Illuminate\Support\HtmlString;
  */
 class WinkPost extends AbstractWinkModel
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -110,7 +114,7 @@ class WinkPost extends AbstractWinkModel
      */
     public function getContentAttribute()
     {
-        if (! $this->markdown) {
+        if (!$this->markdown) {
             return $this->body;
         }
 

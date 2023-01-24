@@ -5,6 +5,7 @@ namespace Wink;
 use Carbon\CarbonInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
+use Wink\Traits\HasSlug;
 
 /**
  * @property string $id
@@ -22,6 +23,8 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class WinkAuthor extends AbstractWinkModel implements Authenticatable
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -127,7 +130,7 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function getRememberToken()
     {
-        if (! empty($this->getRememberTokenName())) {
+        if (!empty($this->getRememberTokenName())) {
             return (string) $this->{$this->getRememberTokenName()};
         }
     }
@@ -140,7 +143,7 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function setRememberToken($value)
     {
-        if (! empty($this->getRememberTokenName())) {
+        if (!empty($this->getRememberTokenName())) {
             $this->{$this->getRememberTokenName()} = $value;
         }
     }
@@ -163,6 +166,6 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
     }
 }

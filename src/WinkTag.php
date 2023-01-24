@@ -4,6 +4,7 @@ namespace Wink;
 
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
+use Wink\Traits\HasSlug;
 
 /**
  * @property string $id
@@ -14,8 +15,11 @@ use Illuminate\Support\Collection;
  * @property array<mixed>|null $meta
  * @property-read Collection<WinkPost> $posts
  */
+
 class WinkTag extends AbstractWinkModel
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *
